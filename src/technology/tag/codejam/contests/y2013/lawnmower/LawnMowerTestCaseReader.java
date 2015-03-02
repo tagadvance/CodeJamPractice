@@ -14,9 +14,10 @@ public class LawnMowerTestCaseReader implements
 	public LawnMowerTestCaseReader() {
 		super();
 	}
-	
+
 	@Override
-	public LawnMowerTestCase readTestCase(int caseNumber, BufferedReader reader) throws IOException {
+	public LawnMowerTestCase readTestCase(int caseNumber, BufferedReader reader)
+			throws IOException {
 		String dimensions = reader.readLine();
 		if (dimensions == null) {
 			return null;

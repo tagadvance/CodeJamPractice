@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
-public class DefaultContestWriter<S extends Solution> implements ContestWriter<S> {
-	
+public class DefaultContestWriter<S extends Solution> implements
+		ContestWriter<S> {
+
 	public DefaultContestWriter() {
-		
+
 	}
 
 	@Override

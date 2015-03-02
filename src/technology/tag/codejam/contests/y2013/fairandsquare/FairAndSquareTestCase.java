@@ -4,7 +4,8 @@ import technology.tag.codejam.base.AbstractTestCase;
 
 import com.google.common.base.Preconditions;
 
-public class FairAndSquareTestCase extends AbstractTestCase<FairAndSquareSolution> {
+public class FairAndSquareTestCase extends
+		AbstractTestCase<FairAndSquareSolution> {
 
 	private final Palindrome palindrome;
 	private final long a, b;

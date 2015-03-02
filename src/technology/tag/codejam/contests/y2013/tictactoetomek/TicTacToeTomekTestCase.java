@@ -24,7 +24,8 @@ public class TicTacToeTomekTestCase extends
 
 	public TicTacToeTomekTestCase(int id, String... rows) {
 		super(id);
-		Preconditions.checkArgument(ROWS == rows.length, "incorrect number of rows");
+		Preconditions.checkArgument(ROWS == rows.length,
+				"incorrect number of rows");
 		this.rows = rows;
 	}
 

@@ -5,7 +5,8 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
-public class ImmutableContest<T extends TestCase<S>, S extends Solution> implements Contest<T, S> {
+public class ImmutableContest<T extends TestCase<S>, S extends Solution>
+		implements Contest<T, S> {
 
 	private final int numberOfTestCases;
 	private final List<T> testCases;

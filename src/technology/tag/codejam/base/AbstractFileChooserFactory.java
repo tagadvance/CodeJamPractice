@@ -67,7 +67,8 @@ public abstract class AbstractFileChooserFactory implements FileBrowser {
 		preferences.put(INITIAL_DIRECTORY_KEY, path);
 	}
 
-	public static class InputFileChooserFactory extends AbstractFileChooserFactory {
+	public static class InputFileChooserFactory extends
+			AbstractFileChooserFactory {
 
 		private static final String DESCRIPTION = "input files";
 		private static final String EXTENSION = "in";
@@ -88,7 +89,8 @@ public abstract class AbstractFileChooserFactory implements FileBrowser {
 
 	}
 
-	public static class OutputFileChooserFactory extends AbstractFileChooserFactory {
+	public static class OutputFileChooserFactory extends
+			AbstractFileChooserFactory {
 
 		private static final String DESCRIPTION = "output files";
 		private static final String EXTENSION = "out";
