@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.prefs.Preferences;
 
-import technology.tag.codejam.base.AbstractFileBrowser.InputFileChooserFactory;
-import technology.tag.codejam.base.AbstractFileBrowser.OutputFileChooserFactory;
-
 import com.google.common.base.Preconditions;
 
 public class CodeJam<T extends TestCase<S>, S extends Solution> {
@@ -95,7 +92,7 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 
 		public Builder<T, S> useSwingInputSource(Preferences preferences) {
 			return this.useInputSource(new SwingInputSource(
-					new InputFileChooserFactory(preferences)));
+					new InputFileBrowser(preferences)));
 		}
 
 		public Builder<T, S> useInputSource(InputSource inputSource) {
@@ -116,7 +113,7 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 
 		public Builder<T, S> useSwingOutputDestination(Preferences preferences) {
 			return this.useOutputDestination(new SwingOutputDestination(
-					new OutputFileChooserFactory(preferences)));
+					new OutputFileBrowser(preferences)));
 		}
 
 		public Builder<T, S> useOutputDestination(OutputDestination destination) {

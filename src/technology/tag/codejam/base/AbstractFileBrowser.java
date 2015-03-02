@@ -7,10 +7,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.prefs.Preferences;
 
-import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.google.common.base.Preconditions;
 
@@ -56,68 +53,11 @@ public abstract class AbstractFileBrowser implements FileBrowser {
 	}
 
 	public void setInitialDirecory(File file) {
+		if (file.isFile()) {
+			file = file.getParentFile();
+		}
 		String path = file.getAbsolutePath();
 		preferences.put(INITIAL_DIRECTORY_KEY, path);
-	}
-
-	public static class InputFileChooserFactory extends AbstractFileBrowser {
-
-		private static final String DESCRIPTION = "input files";
-		private static final String EXTENSION = "in";
-
-		public InputFileChooserFactory(Preferences preferences) {
-			super(preferences);
-		}
-
-		@Override
-		public File selectFile() {
-			File initialDirectory = getInitialDirectory();
-			JFileChooser chooser = new JFileChooser(initialDirectory);
-			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			FileFilter filter = new FileNameExtensionFilter(DESCRIPTION,
-					EXTENSION);
-			chooser.addChoosableFileFilter(filter);
-			chooser.setFileFilter(filter);
-			int result = chooser.showOpenDialog(null);
-			switch (result) {
-			case JFileChooser.APPROVE_OPTION:
-				File selectedFile = chooser.getSelectedFile();
-				setInitialDirecory(selectedFile);
-				return selectedFile;
-			}
-			return null;
-		}
-
-	}
-
-	public static class OutputFileChooserFactory extends AbstractFileBrowser {
-
-		private static final String DESCRIPTION = "output files";
-		private static final String EXTENSION = "out";
-
-		public OutputFileChooserFactory(Preferences preferences) {
-			super(preferences);
-		}
-
-		@Override
-		public File selectFile() {
-			File initialDirectory = getInitialDirectory();
-			JFileChooser chooser = new JFileChooser(initialDirectory);
-			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			FileFilter filter = new FileNameExtensionFilter(DESCRIPTION,
-					EXTENSION);
-			chooser.addChoosableFileFilter(filter);
-			chooser.setFileFilter(filter);
-			int result = chooser.showSaveDialog(null);
-			switch (result) {
-			case JFileChooser.APPROVE_OPTION:
-				File selectedFile = chooser.getSelectedFile();
-				setInitialDirecory(selectedFile);
-				return selectedFile;
-			}
-			return null;
-		}
-
 	}
 
 }
