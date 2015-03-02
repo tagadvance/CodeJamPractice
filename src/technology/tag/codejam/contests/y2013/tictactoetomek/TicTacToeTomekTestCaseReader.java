@@ -17,22 +17,16 @@ public class TicTacToeTomekTestCaseReader implements
 	@Override
 	public TicTacToeTomekTestCase readTestCase(int caseNumber,
 			BufferedReader reader) throws IOException {
-		// TODO: clean this up
-		if (reader.markSupported()) {
-			int readAheadLimit = 1024;
-			reader.mark(readAheadLimit);
-			String line = reader.readLine();
-			if (line == null) {
-				return null;
-			}
-			reader.reset();
-		}
 
 		String[] rows = new String[ROWS];
 		for (int i = 0; i < rows.length; i++) {
 			String line = reader.readLine();
+			if (line == null) {
+				return null;
+			}
 			rows[i] = line;
 		}
+		reader.readLine();
 
 		return new TicTacToeTomekTestCase(caseNumber, rows);
 	}
