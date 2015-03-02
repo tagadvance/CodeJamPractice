@@ -4,9 +4,9 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.base.Preconditions;
-
 import technology.tag.codejam.base.AbstractTestCase;
+
+import com.google.common.base.Preconditions;
 
 public class TicTacToeTomekTestCase extends
 		AbstractTestCase<TicTacToeTomekSolution> {
@@ -37,22 +37,10 @@ public class TicTacToeTomekTestCase extends
 	public TicTacToeTomekSolution solve() {
 		for (Line line : createLines()) {
 			String lineString = line.toString();
-			if (lineString.contains("T")) {
-				if (lineString.contains("XXX")) {
-					return new TicTacToeTomekSolution(getCaseNumber(),
-							Status.X_WON);
-				} else if (lineString.contains("OOO")) {
-					return new TicTacToeTomekSolution(getCaseNumber(),
-							Status.O_WON);
-				}
-			} else {
-				if (lineString.contains("XXXX")) {
-					return new TicTacToeTomekSolution(getCaseNumber(),
-							Status.X_WON);
-				} else if (lineString.contains("OOOO")) {
-					return new TicTacToeTomekSolution(getCaseNumber(),
-							Status.O_WON);
-				}
+			if (lineString.matches("[XT]{4}")) {
+				return new TicTacToeTomekSolution(getCaseNumber(), Status.X_WON);
+			} else if (lineString.matches("[OT]{4}")) {
+				return new TicTacToeTomekSolution(getCaseNumber(), Status.O_WON);
 			}
 		}
 		if (hasEmptyCells()) {
@@ -129,7 +117,7 @@ public class TicTacToeTomekTestCase extends
 				char c = getValue(point.y, point.x);
 				sb.append(c);
 			}
-			return sb.append('\n').toString();
+			return sb.toString();
 		}
 
 	}
