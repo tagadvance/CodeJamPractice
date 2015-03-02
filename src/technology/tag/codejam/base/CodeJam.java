@@ -81,7 +81,7 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 		}
 
 		public Builder<T, S> useSystemInputSource() {
-			return this.useInputSource(new SystemInputSource());
+			return this.useInputSource(new DefaultInputSource(System.in));
 		}
 
 		public Builder<T, S> useFileBrowserInputSource() {
@@ -102,7 +102,7 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 		}
 
 		public Builder<T, S> useSystemOutputDestination() {
-			return this.useOutputDestination(new SystemOutputDestination());
+			return this.useOutputDestination(new DefaultOutputDestination(System.out));
 		}
 
 		public Builder<T, S> useFileBrowserOutputDestination() {
