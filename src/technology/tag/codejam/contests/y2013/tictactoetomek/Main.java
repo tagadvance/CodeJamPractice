@@ -12,7 +12,7 @@ public class Main {
 	}
 
 	private void example() throws IOException {
-		String s = "6\nXXXT\n....\nOO..\n....\nXOXT\nXXOO\nOXOX\nXXOO\nXOX.\nOX..\n....\n....\nOOXX\nOXXX\nOX.T\nO..O\nXXXO\n..O.\n.O..\nT...\nOXXX\nXO..\n..O.\n...O";
+		String s = "6\nXXXT\n....\nOO..\n....\n\nXOXT\nXXOO\nOXOX\nXXOO\n\nXOX.\nOX..\n....\n....\n\nOOXX\nOXXX\nOX.T\nO..O\n\nXXXO\n..O.\n.O..\nT...\n\nOXXX\nXO..\n..O.\n...O";
 		new CodeJam.Builder<TicTacToeTomekTestCase, TicTacToeTomekSolution>()
 				.setTestCaseReader(new TicTacToeTomekTestCaseReader())
 				.useStringInputSource(s).useSystemOutputDestination().build()
