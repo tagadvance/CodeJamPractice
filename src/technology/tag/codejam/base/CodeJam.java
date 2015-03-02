@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.prefs.Preferences;
 
-import technology.tag.codejam.base.AbstractFileChooserFactory.InputFileChooserFactory;
-import technology.tag.codejam.base.AbstractFileChooserFactory.OutputFileChooserFactory;
+import technology.tag.codejam.base.AbstractFileBrowser.InputFileChooserFactory;
+import technology.tag.codejam.base.AbstractFileBrowser.OutputFileChooserFactory;
 
 import com.google.common.base.Preconditions;
 

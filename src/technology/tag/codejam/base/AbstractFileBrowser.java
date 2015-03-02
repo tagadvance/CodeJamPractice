@@ -9,18 +9,19 @@ import java.util.prefs.Preferences;
 
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.google.common.base.Preconditions;
 
-public abstract class AbstractFileChooserFactory implements FileBrowser {
+public abstract class AbstractFileBrowser implements FileBrowser {
 
 	private static final String DEFAULT_DIRECTORY = ".";
 	private static final String INITIAL_DIRECTORY_KEY = "initial_directory";
 
 	private final Preferences preferences;
 
-	public AbstractFileChooserFactory(Preferences preferences) {
+	public AbstractFileBrowser(Preferences preferences) {
 		super();
 		this.preferences = Preconditions.checkNotNull(preferences,
 				"preferences must not be null");
@@ -31,15 +32,7 @@ public abstract class AbstractFileChooserFactory implements FileBrowser {
 		FutureTask<File> task = new FutureTask<>(new Callable<File>() {
 			@Override
 			public File call() throws Exception {
-				JFileChooser chooser = createtFileChooser();
-				int result = chooser.showOpenDialog(null);
-				switch (result) {
-				case JFileChooser.APPROVE_OPTION:
-					File selectedFile = chooser.getSelectedFile();
-					setInitialDirecory(selectedFile);
-					return selectedFile;
-				}
-				return null;
+				return selectFile();
 			}
 		});
 		try {
@@ -55,7 +48,7 @@ public abstract class AbstractFileChooserFactory implements FileBrowser {
 		return null;
 	}
 
-	public abstract JFileChooser createtFileChooser();
+	public abstract File selectFile();
 
 	public File getInitialDirectory() {
 		String path = preferences.get(INITIAL_DIRECTORY_KEY, DEFAULT_DIRECTORY);
@@ -67,8 +60,7 @@ public abstract class AbstractFileChooserFactory implements FileBrowser {
 		preferences.put(INITIAL_DIRECTORY_KEY, path);
 	}
 
-	public static class InputFileChooserFactory extends
-			AbstractFileChooserFactory {
+	public static class InputFileChooserFactory extends AbstractFileBrowser {
 
 		private static final String DESCRIPTION = "input files";
 		private static final String EXTENSION = "in";
@@ -78,19 +70,27 @@ public abstract class AbstractFileChooserFactory implements FileBrowser {
 		}
 
 		@Override
-		public JFileChooser createtFileChooser() {
+		public File selectFile() {
 			File initialDirectory = getInitialDirectory();
 			JFileChooser chooser = new JFileChooser(initialDirectory);
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			chooser.addChoosableFileFilter(new FileNameExtensionFilter(
-					DESCRIPTION, EXTENSION));
-			return chooser;
+			FileFilter filter = new FileNameExtensionFilter(DESCRIPTION,
+					EXTENSION);
+			chooser.addChoosableFileFilter(filter);
+			chooser.setFileFilter(filter);
+			int result = chooser.showOpenDialog(null);
+			switch (result) {
+			case JFileChooser.APPROVE_OPTION:
+				File selectedFile = chooser.getSelectedFile();
+				setInitialDirecory(selectedFile);
+				return selectedFile;
+			}
+			return null;
 		}
 
 	}
 
-	public static class OutputFileChooserFactory extends
-			AbstractFileChooserFactory {
+	public static class OutputFileChooserFactory extends AbstractFileBrowser {
 
 		private static final String DESCRIPTION = "output files";
 		private static final String EXTENSION = "out";
@@ -100,13 +100,22 @@ public abstract class AbstractFileChooserFactory implements FileBrowser {
 		}
 
 		@Override
-		public JFileChooser createtFileChooser() {
+		public File selectFile() {
 			File initialDirectory = getInitialDirectory();
 			JFileChooser chooser = new JFileChooser(initialDirectory);
 			chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			chooser.addChoosableFileFilter(new FileNameExtensionFilter(
-					DESCRIPTION, EXTENSION));
-			return chooser;
+			FileFilter filter = new FileNameExtensionFilter(DESCRIPTION,
+					EXTENSION);
+			chooser.addChoosableFileFilter(filter);
+			chooser.setFileFilter(filter);
+			int result = chooser.showSaveDialog(null);
+			switch (result) {
+			case JFileChooser.APPROVE_OPTION:
+				File selectedFile = chooser.getSelectedFile();
+				setInitialDirecory(selectedFile);
+				return selectedFile;
+			}
+			return null;
 		}
 
 	}
