@@ -24,8 +24,8 @@ public class Main {
 				.userNodeForPackage(TicTacToeTomekTestCase.class);
 		new CodeJam.Builder<TicTacToeTomekTestCase, TicTacToeTomekSolution>()
 				.setTestCaseReader(new TicTacToeTomekTestCaseReader())
-				.useSwingInputSource(preferences)
-				.useSwingOutputDestination(preferences).build().jam();
+				.useFileBrowserInputSource(preferences)
+				.useFileBrowserOutputDestination(preferences).build().jam();
 	}
 
 	public static void main(String[] args) throws IOException {

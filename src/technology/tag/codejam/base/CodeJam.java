@@ -84,13 +84,13 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 			return this.useInputSource(new SystemInputSource());
 		}
 
-		public Builder<T, S> useSwingInputSource() {
+		public Builder<T, S> useFileBrowserInputSource() {
 			Preferences preferences = Preferences
 					.userNodeForPackage(CodeJam.class);
-			return useSwingInputSource(preferences);
+			return useFileBrowserInputSource(preferences);
 		}
 
-		public Builder<T, S> useSwingInputSource(Preferences preferences) {
+		public Builder<T, S> useFileBrowserInputSource(Preferences preferences) {
 			return this.useInputSource(new FileBrowserInputSource(
 					new InputFileBrowser(preferences)));
 		}
@@ -105,13 +105,13 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 			return this.useOutputDestination(new SystemOutputDestination());
 		}
 
-		public Builder<T, S> useSwingOutputDestination() {
+		public Builder<T, S> useFileBrowserOutputDestination() {
 			Preferences preferences = Preferences
 					.userNodeForPackage(CodeJam.class);
-			return useSwingOutputDestination(preferences);
+			return useFileBrowserOutputDestination(preferences);
 		}
 
-		public Builder<T, S> useSwingOutputDestination(Preferences preferences) {
+		public Builder<T, S> useFileBrowserOutputDestination(Preferences preferences) {
 			return this.useOutputDestination(new FileBrowserOutputDestination(
 					new OutputFileBrowser(preferences)));
 		}

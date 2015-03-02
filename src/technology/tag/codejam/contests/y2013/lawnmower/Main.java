@@ -24,8 +24,8 @@ public class Main {
 				.userNodeForPackage(LawnMowerTestCase.class);
 		new CodeJam.Builder<LawnMowerTestCase, LawnMowerSolution>()
 				.setTestCaseReader(new LawnMowerTestCaseReader())
-				.useSwingInputSource(preferences)
-				.useSwingOutputDestination(preferences).build().jam();
+				.useFileBrowserInputSource(preferences)
+				.useFileBrowserOutputDestination(preferences).build().jam();
 	}
 
 	public static void main(String[] args) throws IOException {

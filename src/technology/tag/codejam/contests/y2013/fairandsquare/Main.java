@@ -24,8 +24,8 @@ public class Main {
 				.userNodeForPackage(FairAndSquareTestCase.class);
 		new CodeJam.Builder<FairAndSquareTestCase, FairAndSquareSolution>()
 				.setTestCaseReader(new FairAndSquareTestCaseReader())
-				.useSwingInputSource(preferences)
-				.useSwingOutputDestination(preferences).build().jam();
+				.useFileBrowserInputSource(preferences)
+				.useFileBrowserOutputDestination(preferences).build().jam();
 	}
 
 	public static void main(String[] args) throws IOException {
