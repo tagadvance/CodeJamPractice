@@ -25,7 +25,7 @@ public class Lawn {
 				public List<Point> load(Integer row) throws Exception {
 					List<Point> points = new ArrayList<>();
 					for (int column = 0; column < Lawn.this.width; column++) {
-						points.add(new Point(Lawn.this, column, row));
+						points.add(new Point(column, row));
 					}
 					return points;
 				}
@@ -38,7 +38,7 @@ public class Lawn {
 				public List<Point> load(Integer column) throws Exception {
 					List<Point> points = new ArrayList<>();
 					for (int row = 0; row < Lawn.this.height; row++) {
-						points.add(new Point(Lawn.this, column, row));
+						points.add(new Point(column, row));
 					}
 					return points;
 				}
@@ -106,7 +106,7 @@ public class Lawn {
 		List<Point> points = new ArrayList<>();
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				points.add(new Point(this, x, y));
+				points.add(new Point(x, y));
 			}
 		}
 		return points;
@@ -147,18 +147,16 @@ public class Lawn {
 
 	public class Point implements Comparable<Point> {
 
-		private final Lawn lawn;
 		public final int x, y;
 
-		public Point(Lawn lawn, int x, int y) {
+		public Point(int x, int y) {
 			super();
-			this.lawn = Preconditions.checkNotNull(lawn);
 			this.x = x;
 			this.y = y;
 		}
 
 		public int getHeight() {
-			return lawn.getHeight(x, y);
+			return Lawn.this.getHeight(x, y);
 		}
 
 		@Override
