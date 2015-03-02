@@ -91,7 +91,7 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 		}
 
 		public Builder<T, S> useSwingInputSource(Preferences preferences) {
-			return this.useInputSource(new SwingInputSource(
+			return this.useInputSource(new FileBrowserInputSource(
 					new InputFileBrowser(preferences)));
 		}
 
@@ -112,7 +112,7 @@ public class CodeJam<T extends TestCase<S>, S extends Solution> {
 		}
 
 		public Builder<T, S> useSwingOutputDestination(Preferences preferences) {
-			return this.useOutputDestination(new SwingOutputDestination(
+			return this.useOutputDestination(new FileBrowserOutputDestination(
 					new OutputFileBrowser(preferences)));
 		}
 

@@ -7,11 +7,11 @@ import java.io.OutputStream;
 
 import com.google.common.base.Preconditions;
 
-public class SwingOutputDestination implements OutputDestination {
+public class FileBrowserOutputDestination implements OutputDestination {
 
 	private final FileBrowser browser;
 
-	public SwingOutputDestination(FileBrowser browser) {
+	public FileBrowserOutputDestination(FileBrowser browser) {
 		this.browser = Preconditions.checkNotNull(browser,
 				"browser must not be null");
 	}

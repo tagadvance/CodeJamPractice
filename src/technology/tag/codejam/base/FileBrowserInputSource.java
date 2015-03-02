@@ -9,12 +9,12 @@ import java.io.OutputStream;
 
 import com.google.common.base.Preconditions;
 
-public class SwingInputSource implements InputSource {
+public class FileBrowserInputSource implements InputSource {
 
 	private final FileBrowser browser;
 	private File file;
 
-	public SwingInputSource(FileBrowser browser) {
+	public FileBrowserInputSource(FileBrowser browser) {
 		this.browser = Preconditions.checkNotNull(browser,
 				"browser must not be null");
 	}
