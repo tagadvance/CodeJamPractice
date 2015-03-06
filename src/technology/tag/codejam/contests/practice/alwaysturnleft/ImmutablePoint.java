@@ -6,8 +6,11 @@ public class ImmutablePoint implements Point {
 
 	private final int x, y;
 
+	public ImmutablePoint() {
+		this(0, 0);
+	}
+
 	public ImmutablePoint(int x, int y) {
-		super();
 		this.x = x;
 		this.y = y;
 	}
