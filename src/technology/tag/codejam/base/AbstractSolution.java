@@ -4,12 +4,14 @@ import com.google.common.base.Preconditions;
 
 public abstract class AbstractSolution<D> implements DataFormatter<D>, Solution {
 
+	public static final int MIN_CASE_NUMBER = 1;
+
 	private final int caseNumber;
 	private final D data;
 
 	public AbstractSolution(int caseNumber, D data) {
 		super();
-		Preconditions.checkArgument(caseNumber >= 1);
+		Preconditions.checkArgument(caseNumber >= MIN_CASE_NUMBER);
 		this.caseNumber = caseNumber;
 		this.data = data;
 	}
