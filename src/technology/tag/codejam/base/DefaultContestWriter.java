@@ -14,7 +14,7 @@ public class DefaultContestWriter<S extends Solution> implements
 	@Override
 	public void write(List<S> solutions, PrintStream out) throws IOException {
 		for (S solution : solutions) {
-			out.println(solution);
+			out.println(solution.getOutput());
 		}
 	}
 

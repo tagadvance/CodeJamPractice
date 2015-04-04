@@ -1,5 +1,6 @@
 package technology.tag.codejam.base;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 public abstract class AbstractSolution<D> implements DataFormatter<D>, Solution {
@@ -23,9 +24,16 @@ public abstract class AbstractSolution<D> implements DataFormatter<D>, Solution 
 	public D getData() {
 		return this.data;
 	}
-
-	public String toString() {
+	
+	public String getOutput() {
 		return String.format("Case #%d: %s", caseNumber, format(this.data));
+	}
+	
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this)
+				.add("caseNumber", this.caseNumber).add("data", this.data)
+				.toString();
 	}
 
 }

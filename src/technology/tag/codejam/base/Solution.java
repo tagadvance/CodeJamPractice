@@ -7,4 +7,6 @@ package technology.tag.codejam.base;
  */
 public interface Solution {
 
+	public String getOutput();
+
 }
